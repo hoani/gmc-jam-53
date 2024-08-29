@@ -1,0 +1,1 @@
+/// @description Noop Collision detector
