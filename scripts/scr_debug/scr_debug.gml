@@ -13,7 +13,8 @@ function debug_init() {
 }
 
 function debug_update() {
-	fps_avg = (fps_avg * (FPS_FILTER - 1)/FPS_FILTER) + fps_real/FPS_FILTER 
+	fps_avg = (fps_avg * (FPS_FILTER - 1)/FPS_FILTER) + fps_real/FPS_FILTER
+	debug_control()
 }
 
 function debug_draw() {
@@ -25,11 +26,12 @@ function debug_draw() {
 	}
 }
 
-#macro DEBUG_KEY_PAUSE vk_space
+#macro DEBUG_KEY_PAUSE vk_enter
 #macro DEBUG_KEY_FPS_UP ord("P")
 #macro DEBUG_KEY_FPS_DOWN ord("O")
 #macro DEBUG_KEY_SFX_TOGGLE ord("N")
 #macro DEBUG_KEY_MUSIC_TOGGLE ord("M")
+#macro DEBUG_KEY_RESTART ord("R")
 
 function debug_control() {
 	if !global.debug {
@@ -59,6 +61,10 @@ function debug_control() {
 	
 	if keyboard_check_pressed(DEBUG_KEY_MUSIC_TOGGLE) {
 		music_toggle()
+	}
+	
+	if keyboard_check_pressed(DEBUG_KEY_RESTART) {
+		game_restart()
 	}
 	
 }
