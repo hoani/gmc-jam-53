@@ -4,7 +4,8 @@
 render_flags = phy_debug_render_shapes | phy_debug_render_joints | phy_debug_render_coms | phy_debug_render_obb;
 
 
-physics_world_create(1/128); // 128 pixels per meter.
+physics_world_create(1/PIXELS_PER_METER);
+//physics_world_gravity(0, 0);
 physics_world_gravity(0, 9.8);
 physics_world_update_iterations(20);
 physics_world_update_speed(60);
@@ -17,13 +18,12 @@ physics_fixture_bind(_fix_floor, instance_create(room_width/2, room_height-32, o
 physics_fixture_delete(_fix_floor);
 
 
-add_ball(450, 432, 32)
-add_line(100, 400, 800, 400);
-//add_line(100, 200, 200, 300);
-add_line(900, 100, 900, 300);
 
-add_ball(240, 380, 16)
-add_ball(600, -800, 32)
+watermelon = add_ball(240, 380, 16)
+//add_ball(600, -800, 32)
+
+
+setup_camera = false
 
 
 
@@ -33,4 +33,6 @@ add_ball(600, -800, 32)
 physics_pause_enable(true)
 
 paused = true
+
+show_physics = true
 

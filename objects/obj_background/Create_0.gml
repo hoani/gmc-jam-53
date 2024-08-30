@@ -2,8 +2,4 @@
 // You can write your code in this editor
 
 
-state = BUILD_STATE_DRAG
-x0 = mouse_x
-y0 = mouse_y
-obj0 = get_joint(x0, y0)
-
+depth = 1

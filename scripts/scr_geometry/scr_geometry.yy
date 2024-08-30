@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_geometry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_geometry",
+  "parent":{
+    "name":"physics",
+    "path":"folders/Scripts/physics.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
