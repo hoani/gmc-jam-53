@@ -13,7 +13,7 @@ if _r < 32 {
 
 switch selection {
 	case BUILD_LINE:
-		var _obj1 = get_joint(_x1, _y1)
+		var _obj1 = detector.candidate
 		var _line = add_line(x0, y0, _x1, _y1);
 		if obj0 != noone {
 			weld_objects(_line, obj0, x0, y0)

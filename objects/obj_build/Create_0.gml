@@ -19,4 +19,7 @@ obj0 = noone
 selection = BUILD_LINE;
 
 
+detector = instance_create(mouse_x, mouse_y, obj_joint_detection)
+
+
 

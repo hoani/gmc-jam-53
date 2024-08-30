@@ -3,14 +3,22 @@
 
 
 function draw_joint_candidate() {
-	var _inst = get_joint(mouse_x, mouse_y)
-	if _inst != noone {
+	if detector.candidate != noone {
+		var _vp = detector.position;
 		
-		var _p = get_line_points(_inst.x, _inst.y, _inst.length, -_inst.phy_rotation)
-		var _vp = closest_point_on_line(mouse_x, mouse_y, _p.x0, _p.y0, _p.x1, _p.y1);
+		draw_circle_color(_vp.x, _vp.y, 10, c_lime, c_lime, false)
+	}
+}
 
-		if check_joint_line(_inst, mouse_x, mouse_y) {
-			draw_circle_color(_vp.x, _vp.y, 10, c_lime, c_lime, false)
+if global.debug {
+	if keyboard_check_pressed(ord("J")) {
+		if detector.candidate != noone {
+			var _vp = detector.position;
+		
+			draw_circle_color(_vp.x, _vp.y, 10, c_red, c_red, true)	
+			show_debug_message("candidate at {0} {1}", _vp.x, _vp.y)	
+		} else {
+			show_debug_message("no candidate")	
 		}
 	}
 }
@@ -25,11 +33,11 @@ if state == BUILD_STATE_DRAG {
 			
 			if obj0 != noone {
 				var _circles = init_circles(8, 1);
-				draw_circles(x0, y0, 8, _angle, _circles, c_lime)
-				
-				if _length > BUILD_JOINT_DISTANCE {
-					draw_joint_candidate()
-				}
+				draw_circles(x0, y0, 8, _angle, _circles, c_lime)	
+			}
+			
+			if _length > BUILD_JOINT_DISTANCE {
+				draw_joint_candidate()
 			}
 		break;
 		case BUILD_CIRCLE:
