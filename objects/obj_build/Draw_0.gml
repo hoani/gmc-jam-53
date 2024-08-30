@@ -24,10 +24,12 @@ if global.debug {
 }
 
 if state == BUILD_STATE_DRAG {
+	var _length = point_distance(x0, y0, mouse_x, mouse_y)
+	var _angle = point_direction(x0, y0, mouse_x, mouse_y)
+			
 	switch selection {
 		case BUILD_LINE:
-			var _length = point_distance(x0, y0, mouse_x, mouse_y)
-			var _angle = point_direction(x0, y0, mouse_x, mouse_y)
+			
 			var _lines = init_lines(_length, 0.25);
 			draw_lines((x0 + mouse_x)/2, (y0 + mouse_y)/2, _length, _angle, _lines, c_aqua)
 			
@@ -43,6 +45,10 @@ if state == BUILD_STATE_DRAG {
 		case BUILD_CIRCLE:
 			var _r = point_distance(x0, y0, mouse_x, mouse_y)
 			draw_circle_color(x0, y0, _r, c_aqua, c_aqua, false)
+			
+			if _length > BUILD_JOINT_DISTANCE {
+				draw_joint_candidate()
+			}
 		break;
 	}
 } else {

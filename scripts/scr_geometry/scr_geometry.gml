@@ -42,6 +42,17 @@ function closest_point_on_line(_xp, _yp, _x0, _y0, _x1, _y1){
 	return new Vector2(_outx, _outy)
 }
 
+function closest_point_on_circle(_xp, _yp, _x0, _y0, _r){
+	if point_distance(_xp, _yp, _x0, _y0) < _r {
+		return new Vector2(_xp, _yp);
+	}
+
+	var _vl = new Vector2(_x0, _y0)
+	var _vu = new Vector2(_xp - _x0, _yp - _y0).normalize()
+	
+	return _vl.add(_vu.multiply(_r))
+}
+
 
 function place_within(_v, _a, _b) {
 	if _a < _b {

@@ -11,19 +11,23 @@ if _r < 32 {
 	return	
 }
 
+function do_welds(_inst, _x1, _y1) {
+	if obj0 != noone {
+		weld_objects(_inst, obj0, x0, y0)
+	}
+	var _obj1 = detector.candidate
+	if _obj1 != obj0 && _obj1 != noone {
+		weld_objects(_inst, _obj1, _x1, _y1)
+	}
+}
+
 switch selection {
 	case BUILD_LINE:
-		var _obj1 = detector.candidate
 		var _line = add_line(x0, y0, _x1, _y1);
-		if obj0 != noone {
-			weld_objects(_line, obj0, x0, y0)
-		}
-		if _obj1 != obj0 && _obj1 != noone {
-			weld_objects(_line, _obj1, _x1, _y1)
-		}
+		do_welds(_line, _x1, _y1)
 		break;
 	case BUILD_CIRCLE:
-		var _r = point_distance(x0, y0, _x1, _y1)
-		add_ball(x0, y0, _r);
+		var _ball = add_ball(x0, y0, _r);
+		do_welds(_ball, _x1, _y1)
 		break;
 }

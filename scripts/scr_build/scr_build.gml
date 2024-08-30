@@ -20,6 +20,16 @@ function get_join_line(_inst, _x, _y) {
 	}
 }
 
+function get_join_circle(_inst, _x, _y) {
+
+	var _vp = closest_point_on_circle(_x, _y, _inst.x, _inst.y, _inst.radius);
+	
+	return {
+		success: point_distance(_x, _y, _vp.x, _vp.y) < BUILD_JOINT_DISTANCE ,
+		position: _vp,
+	}
+}
+
 function get_join_noop(_inst, _x, _y) {
 	return {
 		success: false,

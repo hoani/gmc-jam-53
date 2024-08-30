@@ -7,14 +7,16 @@
   ],
   "managed":true,
   "name":"obj_circle",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_joinable","path":"objects/obj_joinable/obj_joinable.yy",},"propertyId":{"name":"get_join","path":"objects/obj_joinable/obj_joinable.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"get_join_circle",},
+  ],
   "parent":{
     "name":"physics",
     "path":"folders/Objects/physics.yy",
   },
   "parentObjectId":{
-    "name":"obj_base",
-    "path":"objects/obj_base/obj_base.yy",
+    "name":"obj_joinable",
+    "path":"objects/obj_joinable/obj_joinable.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
