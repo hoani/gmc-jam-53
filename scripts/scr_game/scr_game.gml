@@ -4,9 +4,11 @@
 
 #macro WINDOW_SCALE 1
 
-#macro STATE_CUTSCENE 0
-#macro STATE_PLAY 1
-#macro STATE_PAUSE 2
+#macro STATE_TITLE 0
+#macro STATE_BUILD 1
+#macro STATE_RUN 2
+#macro STATE_SCORE 3
+
 
 
 function game_init(){
@@ -16,9 +18,21 @@ function game_init(){
 	
 	debug_init()
 	gamespeed_init()
-	global.state = new_state(STATE_CUTSCENE)
+	global.state = new_state(STATE_TITLE)
 	global.step = 0
 	global.mono = 0
 	
 	audio_init()
+}
+
+
+function toggle_run_build() {
+	switch gamestate() {
+		case STATE_BUILD:
+			gamestate_set(STATE_RUN);
+			break;
+		case STATE_RUN:
+			gamestate_set(STATE_BUILD);
+			break;
+	}
 }

@@ -13,6 +13,9 @@ function camera_init(_view){
 
 function assign_camera(_camera, _inst) {
 	_camera.assigned.inst = _inst
-	_camera.assigned.xoff = _inst.x
-	_camera.assigned.yoff = _inst.y
+
+	if instance_exists(_inst) {
+		_camera.assigned.xoff = _inst.x
+		_camera.assigned.yoff = room_height/2
+	}
 }

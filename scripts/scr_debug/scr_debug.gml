@@ -27,6 +27,7 @@ function debug_draw() {
 }
 
 #macro DEBUG_KEY_PAUSE vk_enter
+#macro DEBUG_KEY_RUN vk_space
 #macro DEBUG_KEY_FPS_UP ord("P")
 #macro DEBUG_KEY_FPS_DOWN ord("O")
 #macro DEBUG_KEY_SFX_TOGGLE ord("N")
@@ -40,6 +41,10 @@ function debug_control() {
 	
 	if keyboard_check_pressed(DEBUG_KEY_PAUSE) {
 		pause_toggle()
+	}
+	
+	if keyboard_check_pressed(DEBUG_KEY_RUN) {
+		toggle_run_build()
 	}
 	
 	if keyboard_check_pressed(DEBUG_KEY_FPS_UP) {

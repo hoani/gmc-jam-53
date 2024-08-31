@@ -26,3 +26,8 @@ function gamestate() {
 function gamestate_set(_val) {
 	return state_set(global.state, _val)	
 }
+
+
+
+
+

@@ -7,3 +7,4 @@ if radius > sprite_get_width(sprite_index) {
 }
 
 circles = init_circles(radius);
+

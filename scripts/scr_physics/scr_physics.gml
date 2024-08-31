@@ -23,6 +23,8 @@ function add_line(_x0, _y0, _x1, _y1) {
 	physics_fixture_set_density(_fix, 0.5);
 	physics_fixture_set_restitution(_fix, 0.8);
 	
+	physics_fixture_set_linear_damping(_fix, 1/128);
+	
 	
 	var _inst = instance_create(_x, _y, obj_line, {image_angle: _dir, length: _length})
 	physics_fixture_bind(_fix, _inst);
@@ -41,15 +43,27 @@ function add_ball(_x, _y, _r) {
 	var _fix = physics_fixture_create();
 	physics_fixture_set_circle_shape(_fix, _r);
 	physics_fixture_set_density(_fix, 0.5);
-	physics_fixture_set_restitution(_fix, 0.8);
-	
+	physics_fixture_set_restitution(_fix, 0.5);
 	
 	var _inst = instance_create(_x, _y, obj_circle, {radius: _r})
 	physics_fixture_bind(_fix, _inst);
 	physics_fixture_delete(_fix);
 	
 	_inst.phy_bullet = true;
+	return _inst;
+}
+
+function add_watermelon(_x, _y, _r) {
+	var _fix = physics_fixture_create();
+	physics_fixture_set_circle_shape(_fix, _r);
+	physics_fixture_set_density(_fix, 0.5);
+	physics_fixture_set_restitution(_fix, 0.25);
 	
+	var _inst = instance_create(_x, _y, obj_watermelon, {radius: _r})
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	
+	_inst.phy_bullet = true;
 	return _inst;
 }
 

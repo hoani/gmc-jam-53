@@ -1,6 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if gamestate() != STATE_BUILD {
+	exit
+}
+
 candidate = noone
 
 x = mouse_x

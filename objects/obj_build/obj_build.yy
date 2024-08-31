@@ -13,8 +13,8 @@
   "name":"obj_build",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"game",
+    "path":"folders/Objects/game.yy",
   },
   "parentObjectId":null,
   "persistent":false,

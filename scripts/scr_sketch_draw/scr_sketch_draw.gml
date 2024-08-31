@@ -96,6 +96,6 @@ function draw_rounded_line(_x0, _y0, _x1, _y1, _w, _c){
 
 function draw_rounded_line2(_x0, _y0, _x1, _y1, _w, _c1, _c2){
 	draw_line_width_color(_x0, _y0, _x1, _y1, _w, _c1, _c2)
-	draw_circle_color(_x0, _y0, _w/2, _c1, _c1, false)
-	draw_circle_color(_x1, _y1, _w/2, _c2, _c2, false)
+	//draw_circle_color(_x0, _y0, _w/2, _c1, _c1, false)
+	//draw_circle_color(_x1, _y1, _w/2, _c2, _c2, false)
 }
