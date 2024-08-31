@@ -1,8 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if global.state == enabled_state {
-	if global.state_mono > BUTTON_FADE_OUT_FRAMES { // Warm up first.
+if global.state.current == enabled_state {
+	if global.state.mono > BUTTON_FADE_OUT_FRAMES { // Warm up first.
 		visible = true
 		image_alpha = min(image_alpha + 1/BUTTON_FADE_IN_FRAMES, 1.0)
 	}
@@ -14,6 +14,9 @@ if global.state == enabled_state {
 
 
 if visible {
+	x = camera_get_view_x(view_camera[0]) + xoff	
+	x = camera_get_view_x(view_camera[0]) + yoff
+
 	if image_alpha = 1.0 && position_meeting(mouse_x, mouse_y, self) {
 		hover = true
 	} else {

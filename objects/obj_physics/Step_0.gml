@@ -10,17 +10,21 @@ if _paused != paused {
 }
 	
 
-if setup_camera = false {
-	setup_camera = true
-	assign_camera(obj_camera, watermelon)
-	obj_background.x0 = obj_watermelon.xstart
+if camera_setup = false {
+	physics_setup_camera()
 }
 
 if keyboard_check_pressed(ord("Q")) {
 	show_physics = !show_physics
 }
 
-if gamestate() != STATE_SCORE {
-	game_floor.phy_position_x = watermelon.x
+
+game_floor.phy_position_x = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]/2)
+
+if gamestate() == STATE_RESTART {
+	if camera_get_view_x(view_camera[0]) < room_width/2 && obj_camera.camera_speed < 1 {
+		gamestate_set(STATE_BUILD)	
+	}
 }
+
 

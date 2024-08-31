@@ -3,3 +3,4 @@
 
 event_inherited()
 ymax = 0
+sd = new_stop_detection()

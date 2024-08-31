@@ -3,9 +3,64 @@
 #macro GRAVITY 0.5
 #macro MAX_YSPD 8
 #macro PIXELS_PER_METER 128
+#macro FLOOR_HEIGHT 32
 
 
 
+function physics_init() {
+	physics_world_create(1/PIXELS_PER_METER);
+	physics_world_gravity(0, 9.8);
+	physics_world_update_iterations(20);
+	physics_world_update_speed(60);
+	
+	physics_new_world()
+}
+
+function physics_reset_world() {
+	with (obj_physics) {
+		physics_destroy_world() 
+		physics_new_world()
+	
+		physics_setup_camera()
+		gamestate_set(STATE_RESTART)
+	}
+}
+
+
+function physics_new_world() {
+	var _fix_floor = physics_fixture_create();
+	physics_fixture_set_box_shape(_fix_floor, room_width*2, FLOOR_HEIGHT);
+	physics_fixture_set_kinematic(_fix_floor);
+	physics_fixture_set_friction(_fix_floor, 1);
+
+	game_floor = instance_create(room_width/2, room_height, obj_base)
+	physics_fixture_bind(_fix_floor, game_floor);
+	physics_fixture_delete(_fix_floor);
+
+	watermelon = add_watermelon(room_width/2-8, 380, 16)
+
+
+	camera_setup = false
+
+	paused = true
+	physics_pause_enable(true)	
+}
+
+function physics_destroy_world() {
+	with(obj_joint) {
+		instance_destroy()
+	}
+	with (obj_base) {
+		instance_destroy()
+	}												
+}
+
+function physics_setup_camera() {
+	camera_setup = true
+	assign_camera(obj_camera, watermelon)
+	obj_background.x0 = obj_watermelon.xstart
+	obj_background.y0 = obj_watermelon.ystart
+}
 
 function add_line(_x0, _y0, _x1, _y1) {
 	var _fix = physics_fixture_create();

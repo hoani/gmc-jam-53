@@ -8,3 +8,6 @@ hover = false
 
 #macro BUTTON_FADE_IN_FRAMES 32
 #macro BUTTON_FADE_OUT_FRAMES 16
+
+xoff = x 
+yoff = y

@@ -8,6 +8,7 @@
 #macro STATE_BUILD 1
 #macro STATE_RUN 2
 #macro STATE_SCORE 3
+#macro STATE_RESTART 4
 
 
 
@@ -19,12 +20,19 @@ function game_init(){
 	debug_init()
 	gamespeed_init()
 	global.state = new_state(STATE_TITLE)
-	global.step = 0
-	global.mono = 0
 	
 	audio_init()
+	
+	init_mouseholder()
 }
 
+
+function game_update() {
+	mouseholder_update()	
+	debug_update()
+	
+	state_update(global.state) 
+}
 
 function toggle_run_build() {
 	switch gamestate() {

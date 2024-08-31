@@ -10,7 +10,7 @@ if hover {
 	_col = c_white
 }
 
-var _alpha = min(image_alpha, global.gui_alpha)
+var _alpha = image_alpha
 
 
-draw_sprite_ext(spr_button, image_index, x, y, 1, 1, 0, _col, _alpha)
+draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, 0, _col, _alpha)
