@@ -90,6 +90,7 @@
     {"id":{"name":"scr_watermelon","path":"scripts/scr_watermelon/scr_watermelon.yy",},},
     {"id":{"name":"snd_none","path":"sounds/snd_none/snd_none.yy",},},
     {"id":{"name":"spr_base","path":"sprites/spr_base/spr_base.yy",},},
+    {"id":{"name":"spr_blueprint","path":"sprites/spr_blueprint/spr_blueprint.yy",},},
     {"id":{"name":"spr_circle","path":"sprites/spr_circle/spr_circle.yy",},},
     {"id":{"name":"spr_collisionless","path":"sprites/spr_collisionless/spr_collisionless.yy",},},
     {"id":{"name":"spr_credits","path":"sprites/spr_credits/spr_credits.yy",},},

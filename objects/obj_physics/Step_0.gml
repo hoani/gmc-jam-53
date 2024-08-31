@@ -22,7 +22,7 @@ if keyboard_check_pressed(ord("Q")) {
 game_floor.phy_position_x = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]/2)
 
 if gamestate() == STATE_RESTART {
-	if camera_get_view_x(view_camera[0]) < room_width/2 && obj_camera.camera_speed < 1 {
+	if abs(camera_get_view_x(view_camera[0])) < room_width/2 && obj_camera.camera_speed < 4 {
 		gamestate_set(STATE_BUILD)	
 	}
 }
