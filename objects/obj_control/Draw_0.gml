@@ -1,5 +1,9 @@
 /// @description Draw debug physics
 
+
+canvas_draw(canvas)
+
+
 if global.debug && show_physics {
 	physics_world_draw_debug(render_flags);
 }
@@ -12,3 +16,6 @@ if gamestate() == STATE_SCORE {
 	draw_text(_x + room_width/2, _y+room_height/2, $"max distance: {xmax}")	
 	draw_text(_x + room_width/2, _y+room_height/2+32, $"max height: {ymax}")
 }
+
+
+

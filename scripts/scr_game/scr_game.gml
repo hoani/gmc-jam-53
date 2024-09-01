@@ -24,6 +24,11 @@ function game_init(){
 	audio_init()
 	
 	init_mouseholder()
+	
+	music_start(snd_music_build)
+	
+	global.drawx = 0
+	global.drawy = 0
 }
 
 
@@ -31,7 +36,27 @@ function game_update() {
 	mouseholder_update()	
 	debug_update()
 	
-	state_update(global.state) 
+	
+	music_update()
+	
+	if global.state.mono == 0 {
+		update_game_music() 
+	}
+	
+	state_update(global.state)
+}
+
+function update_game_music() {
+	switch gamestate() {
+		case STATE_BUILD:
+			if !audio_is_playing(snd_music_build) {
+				music_start(snd_music_build)
+			}
+			break	
+		case STATE_RUN:
+			music_stop()
+			break
+	}
 }
 
 function toggle_run_build() {

@@ -23,6 +23,8 @@ var _new_h = lerp(_view_h, _zoom * default_zoom_height, _rate);
 //Apply the new size
 camera_set_view_size(view_camera[0], _new_w, _new_h);
 
+scale = _new_w/default_zoom_width; // This is a helper for UI elements to determine where to place draws.
+
 
 if instance_exists(assigned.inst) {
 	var _max_spd = CAMERA_MAX_SPEED * _zoom;

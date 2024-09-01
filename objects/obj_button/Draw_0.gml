@@ -10,7 +10,6 @@ if hover {
 	_col = c_white
 }
 
-var _alpha = image_alpha
 
 
-draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, 0, _col, _alpha)
+draw_sprite_ext(sprite_index, image_index, x, y, obj_camera.scale, obj_camera.scale, 0, _col, image_alpha)

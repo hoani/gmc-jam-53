@@ -32,6 +32,7 @@ function music_start(_track){
 function music_stop() {
 	if global.music.current != -1 && audio_is_playing(global.music.current) {
 		audio_stop_sound(global.music.current)
+		global.music.current = -1
 	}	
 }
 

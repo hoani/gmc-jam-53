@@ -17,7 +17,7 @@ function physics_init() {
 }
 
 function physics_reset_world() {
-	with (obj_physics) {
+	with (obj_control) {
 		physics_destroy_world() 
 		physics_new_world()
 	

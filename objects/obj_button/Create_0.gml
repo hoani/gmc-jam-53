@@ -1,7 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-depth = -99
 
 image_speed = 0
 hover = false
@@ -11,3 +10,5 @@ hover = false
 
 xoff = x 
 yoff = y
+
+visible = false

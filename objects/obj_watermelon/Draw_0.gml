@@ -1,15 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+var _c = stop_detection_warning(sd) && gamestate() == STATE_RUN ? c_red : c_white;
 
-var _c = c_white
-
-if stop_detection_warning(sd) {
-	_c = c_red	
-}
-
-if sd.stopped {
-	_c = c_ltgray
-}
-
-draw_circles(x, y, radius, -phy_rotation, circles, _c)
+draw_watermelon(x, y, -phy_rotation, _c)

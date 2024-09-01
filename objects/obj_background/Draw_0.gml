@@ -13,7 +13,7 @@ var _c_minor = c_dkgray
 
 
 if gamestate() == STATE_BUILD {
-	draw_sprite_stretched(spr_blueprint, 0, _x0, _y0, _x1 - _x0, _y1 - _y0)
+	draw_sprite_stretched(spr_blueprint, 0, global.drawx + _x0, global.drawy + _y0,  _x1 - _x0,  _y1 - _y0)
 	_c_major = #8AB5DC
 	_c_minor = #669CCC 
 }
@@ -25,8 +25,8 @@ for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
 	if _m % 5 == 0 {
 		_c = _c_major
 	}
-	draw_line_color(_x, _y0, _x, _y1, _c, _c)
-	draw_text(_x, _y0+32, $"{_m}m")
+	draw_rounded_line( _x, _y0,_x, _y1, 1, _c)
+	draw_text(global.drawx +_x,global.drawy + _y0+32, $"{_m}m")
 }
 
 
@@ -36,6 +36,6 @@ for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
 	if _m % 5 == 0 {
 		_c = _c_major
 	}
-	draw_line_color(_x0, _y, _x1, _y, _c, _c)
-	draw_text(_x0 + 64, _y+32, $"{_m}m")
+	draw_rounded_line( _x0, _y,_x1, _y, 1, _c)
+	draw_text(global.drawx +_x0 + 64, global.drawy +_y+32, $"{_m}m")
 }

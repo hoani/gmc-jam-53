@@ -7,7 +7,7 @@
   },
   "bitDepth":0,
   "bitRate":16,
-  "compression":0,
+  "compression":1,
   "conversionMode":0,
   "duration":0.222494,
   "name":"snd_none",

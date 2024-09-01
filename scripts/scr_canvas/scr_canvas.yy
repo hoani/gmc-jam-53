@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_canvas",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_canvas",
+  "parent":{
+    "name":"sketch",
+    "path":"folders/Scripts/sketch.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

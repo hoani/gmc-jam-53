@@ -52,6 +52,6 @@ function stop_detection_warning(_sd) {
 function score_transition(){
 	gamestate_set(STATE_SCORE)
 	assign_camera(obj_camera, noone)
-	obj_physics.xmax = (x - xstart)/PIXELS_PER_METER
-	obj_physics.ymax = ymax
+	obj_control.xmax = (x - xstart)/PIXELS_PER_METER
+	obj_control.ymax = ymax
 }
