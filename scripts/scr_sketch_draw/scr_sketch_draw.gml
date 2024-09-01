@@ -20,6 +20,14 @@ function init_lines(_length, _jitter = 0.5) {
 
 
 function draw_lines(_x, _y, _length, _angle, _lines, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_lines_build(_x, _y, _length, _angle, _lines, _c)
+	} else {
+		draw_lines_play(_x, _y, _length, _angle, _lines, _c)
+	}
+}
+
+function draw_lines_build(_x, _y, _length, _angle, _lines, _c) {
 	for (var _i = 0; _i < array_length(_lines); _i++) {
 		var _offsets = _lines[_i];
 		var _line_length = _offsets.length + _length;
@@ -31,9 +39,23 @@ function draw_lines(_x, _y, _length, _angle, _lines, _c) {
 	}
 }
 
+function draw_lines_play(_x, _y, _length, _angle, _lines, _c) {
+	var _c0 = #bb8855;	
+	var _c1 = #665533;
+
+	if _c != c_white {
+		_c0 = merge_color(_c0, _c, 0.5);
+	}
+	
+	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c0, false)
+	
+
+	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c1, true)	
+}
+
 function init_circles(_radius, _jitter = 1) {
 	var _max_radius_jitter = _radius/32 + 2.0;
-	_circles = {
+	var _circles = {
 		outline: [],
 		fill: []
 	}
@@ -105,15 +127,14 @@ function draw_circles_play(_x, _y, _radius, _angle, _circles, _c) {
 	_x = global.drawx + _x;
 	_y = global.drawy + _y;
 	
-	var _c0 = #bbaa11;
-	var _c1 = #997711;	
-	var _c2 = #554406;
+	var _c0 = #bb8855;
+	var _c1 = #997744;	
+	var _c2 = #665533;
 
 	if _c != c_white {
 		_c0 = merge_color(_c0, _c, 0.5);
 		_c1 = merge_color(_c1, _c, 0.5);
 		_c2 = merge_color(_c1, _c, 0.5);	
-
 	}
 	draw_circle_color(_x, _y, _radius, _c0, _c0, false)
 	var _roff = (_radius/16)
@@ -123,6 +144,48 @@ function draw_circles_play(_x, _y, _radius, _angle, _circles, _c) {
 	var _scale = (_radius*2) / sprite_get_width(spr_circle_texture)
 	draw_sprite_ext(spr_circle_texture, 0, _x, _y, _scale, _scale, _angle + _circles.fill[0].angle,_c2 , 0.25)
 	draw_circle_color(_x, _y, _radius, c_black, c_black, true)
+}
+
+function draw_floor() {
+	
+	if gamestate() == STATE_BUILD {
+		draw_floor_build()
+	} else {
+		draw_floor_play()
+	}
+}
+
+function draw_floor_build() {
+	var _cam = view_get_camera(0)
+
+	var _x0 = camera_get_view_x(_cam) - (camera_get_view_x(_cam) % 32 + 32);
+	var _x1 = camera_get_view_x(_cam) + camera_get_view_width(_cam) + 32;
+	var _y0 = room_height - FLOOR_HEIGHT;
+	var _y1 = camera_get_view_y(_cam) + camera_get_view_height(_cam);
+
+	var _c = c_white;
+
+	if _y1 >= _y0 {
+		draw_rounded_line(_x0, _y0, _x1, _y0, 4, _c)
+
+		for (var _x = _x0; _x < _x1; _x += 32) {
+			draw_rounded_line(_x, _y0, _x-32, _y0+32, 2, _c)
+		}
+	}
+}
+
+function draw_floor_play() {
+	var _cam = view_get_camera(0)	
+
+	var _inc = sprite_get_width(spr_floor)
+	var _x0 = camera_get_view_x(_cam) - (camera_get_view_x(_cam) % _inc + _inc);
+	var _x1 = camera_get_view_x(_cam) + camera_get_view_width(_cam) + _inc;
+	var _y0 = room_height - FLOOR_HEIGHT;
+	var _y1 = camera_get_view_y(_cam) + camera_get_view_height(_cam);
+
+	if _y1 >= _y0 {
+		draw_sprite_stretched(spr_floor, 0, global.drawx + _x0, global.drawy+ _y0, _x1 - _x0, _y1 - _y0)
+	}
 }
 
 

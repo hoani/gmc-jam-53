@@ -72,6 +72,27 @@ function get_line_points(_x, _y, _length, _angle){
 	}
 }
 
+function get_rectangle_points(_x, _y, _w, _h, _angle){
+	var _dw = angletovec2(_angle).multiply(_w/2);
+	var _dh = angletovec2(_angle).multiply(_h/2);
+	
+	return {
+		 // Top left
+		 x0: _x - _dw.x - _dh.y,	
+		 y0: _y + _dh.x - _dw.y ,
+		 // Top right
+		 x1: _x + _dw.x - _dh.y,	
+		 y1: _y + _dh.x + _dw.y,
+		 // Bottom right
+		 x2: _x + _dw.x + _dh.y,	
+		 y2: _y - _dh.x + _dw.y,
+		 // Bottom left
+		 x3: _x - _dw.x + _dh.y,	
+		 y3: _y - _dh.x - _dw.y,
+	}
+}
+
+
 
 function angletovec2(_angle) {
 	var _ux =  dcos(_angle);
