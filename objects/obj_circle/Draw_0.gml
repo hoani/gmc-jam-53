@@ -1,5 +1,13 @@
 /// @description Draw circle
 
 
-var _c = gamestate() == STATE_BUILD ? BUILD_C_LINE : c_white;
+var _c = c_white;
+
+if gamestate() == STATE_BUILD {
+	_c = BUILD_C_LINE
+	if obj_build.delete_detector.candidate == id {
+		_c = BUILD_C_DELETE	
+	}
+}
+
 draw_circles(x, y, radius, -phy_rotation, circles, _c)

@@ -15,8 +15,8 @@
     "path":"folders/Objects/physics.yy",
   },
   "parentObjectId":{
-    "name":"obj_joinable",
-    "path":"objects/obj_joinable/obj_joinable.yy",
+    "name":"obj_joinable_base",
+    "path":"objects/obj_joinable_base/obj_joinable_base.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

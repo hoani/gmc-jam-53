@@ -4,7 +4,6 @@
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_line",
@@ -16,8 +15,8 @@
     "path":"folders/Objects/physics.yy",
   },
   "parentObjectId":{
-    "name":"obj_joinable",
-    "path":"objects/obj_joinable/obj_joinable.yy",
+    "name":"obj_joinable_base",
+    "path":"objects/obj_joinable_base/obj_joinable_base.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

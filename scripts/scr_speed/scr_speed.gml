@@ -17,32 +17,6 @@ function apply_spd() {
 	vspeed = get_spd(vspd)
 }
 
-function pause_toggle() {
-	if gamestate() == STATE_PAUSE {
-		resume_game()
-	} else {
-		pause_game()
-	}
-}
 
-function pause_game(){
-	if gamestate() != STATE_PLAY {
-		return
-	}
-	gamestate_set(STATE_PAUSE)
-	global.s = 0.0
-	physics_pause_enable(true)
-	sfx_pause()
-}
-
-function resume_game() {
-	if gamestate() != STATE_PAUSE {
-		return
-	}
-	gamestate_set(STATE_PLAY)
-	global.s = 1.0
-	physics_pause_enable(false)
-	sfx_resume()
-}
 
 

@@ -8,6 +8,7 @@
 #macro BUILD_C_LINE #dddddd
 
 #macro BUILD_C_CANNOT_PLACE #ee4444
+#macro BUILD_C_DELETE #ff2222
 #macro BUILD_C_PLACE #88dd33
 #macro BUILD_C_PLACE_JOIN #33dd88
 
@@ -72,7 +73,8 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 				}
 			break;
 		}
-	} else {
+	}
+	if _state == BUILD_STATE_IDLE {
 		draw_joint_candidate(_detector)
 	}
 

@@ -59,8 +59,8 @@ selections[1].tool = TOOL_BALL
 
 selection = 0;
 
-
 detector = instance_create(mouse_x, mouse_y, obj_joint_detection)
+delete_detector = instance_create(mouse_x, mouse_y, obj_delete_detection)
 
 
 

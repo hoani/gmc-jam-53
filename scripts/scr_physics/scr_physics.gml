@@ -50,6 +50,9 @@ function physics_destroy_world() {
 	with(obj_joint) {
 		instance_destroy()
 	}
+	with (obj_joinable) {
+		instance_destroy()
+	}	
 	with (obj_base) {
 		instance_destroy()
 	}												
@@ -132,6 +135,8 @@ function weld_objects(_obj0, _obj1, _x, _y) {
 	var _ang = physics_joint_get_value(_weld, phy_joint_angle);
 	physics_joint_set_value(_weld, phy_joint_angle, degtorad(_angle));
 	//show_debug_message("weld angle at {0}, {1}, is  {2} - obj0: {3} obj1: {4}, angle {5}", _x, _y, _angle, _obj0.phy_rotation, _obj1.phy_rotation, _ang)
-	instance_create(_x, _y, obj_joint, {joint: _weld})
+	var _join = instance_create(_x, _y, obj_joint, {joint: _weld})
+	array_push(_obj0.joins, _join)
+	array_push(_obj1.joins, _join)
 }
 

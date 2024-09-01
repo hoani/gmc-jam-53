@@ -1,5 +1,5 @@
 /// @description Circle setup
-
+event_inherited()
 
 if radius > sprite_get_width(sprite_index) {	
 	image_xscale = 2.0*radius/sprite_get_width(sprite_index) 
