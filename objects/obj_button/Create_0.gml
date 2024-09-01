@@ -12,3 +12,5 @@ xoff = x
 yoff = y
 
 visible = false
+
+disabled = false

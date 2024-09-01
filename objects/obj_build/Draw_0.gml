@@ -8,7 +8,7 @@ if gamestate() != STATE_BUILD {
 	exit
 }
 
-build_draw(obj0, x0, y0, detector, state, selection)
+build_draw(obj0, x0, y0, detector, state, selections[selection])
 
 
 if global.debug {

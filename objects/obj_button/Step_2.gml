@@ -18,7 +18,7 @@ if visible {
 	x = camera_get_view_x(view_camera[0]) + xoff * obj_camera.scale;	
 	y = camera_get_view_y(view_camera[0]) + yoff * obj_camera.scale;
 
-	if image_alpha = 1.0 && position_meeting(mouse_x, mouse_y, self) {
+	if image_alpha = 1.0 && position_meeting(mouse_x, mouse_y, self) && !disabled {
 		hover = true
 	} else {
 		hover = false

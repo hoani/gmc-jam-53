@@ -11,7 +11,9 @@ var _y1 = mouse_y
 
 var _r = point_distance(x0, y0, _x1, _y1)
 
-if !can_build(selection, _r) {
+var _selection = selections[selection]
+
+if !can_build(_selection, _r) {
 	return	
 }
 
@@ -30,12 +32,12 @@ function do_welds(_inst, _x1, _y1) {
 	}
 }
 
-switch selection {
-	case BUILD_LINE:
+switch _selection.tool {
+	case TOOL_LINE:
 		var _line = add_line(x0, y0, _x1, _y1);
 		do_welds(_line, _x1, _y1)
 		break;
-	case BUILD_CIRCLE:
+	case TOOL_BALL:
 		var _ball = add_ball(x0, y0, _r);
 		do_welds(_ball, _x1, _y1)
 		break;

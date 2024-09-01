@@ -24,10 +24,13 @@ default_zoom_width = camera_get_view_width(view_camera[0]);
 default_zoom_height = camera_get_view_height(view_camera[0]);
 
 scale = 1
-
 xoff = 0
 yoff = 0
-
 camera_speed = 0
+
+left_scroll = false
+right_scroll = false
+up_scroll = false
+down_scroll = false
 
 

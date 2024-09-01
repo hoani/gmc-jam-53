@@ -13,10 +13,10 @@
 
 
 function can_build(_selection, _length) {
-	switch _selection {
-		case BUILD_LINE:
+	switch _selection.tool {
+		case TOOL_LINE:
 			return _length > MIN_LINE_LENGTH
-		case BUILD_CIRCLE:
+		case TOOL_BALL:
 			return _length > MIN_CIRCLE_RADIUS
 	}
 }
@@ -42,8 +42,8 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 		
 		var _c_place = _can_build ? BUILD_C_PLACE : BUILD_C_CANNOT_PLACE;
 			
-		switch _selection {
-			case BUILD_LINE:
+		switch _selection.tool {
+			case TOOL_LINE:
 			
 				var _lines = init_lines(_length, 0.25);
 				draw_lines((_x0 + mouse_x)/2, (_y0 + mouse_y)/2, _length, _angle, _lines, _c_place)
@@ -57,7 +57,7 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 					draw_joint_candidate(_detector)
 				}
 			break;
-			case BUILD_CIRCLE:
+			case TOOL_BALL:
 				var _r = point_distance(_x0, _y0, mouse_x, mouse_y)
 				var _ccircles = init_circles(_r, 0.25);
 				draw_circles(_x0, _y0, _r, _angle, _ccircles, _c_place)
@@ -76,11 +76,11 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 		draw_joint_candidate(_detector)
 	}
 
-	switch _selection {
-		case BUILD_LINE:
+	switch _selection.tool {
+		case TOOL_LINE:
 			draw_text(0, room_height-48, "line")
 		break;
-		case BUILD_CIRCLE:
+		case TOOL_BALL:
 			draw_text(0, room_height-48, "circle")
 		break;
 	}

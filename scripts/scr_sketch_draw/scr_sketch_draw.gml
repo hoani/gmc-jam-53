@@ -163,7 +163,7 @@ function draw_floor_build() {
 	var _y0 = room_height - FLOOR_HEIGHT;
 	var _y1 = camera_get_view_y(_cam) + camera_get_view_height(_cam);
 
-	var _c = c_white;
+	var _c = BUILD_C_LINE;
 
 	if _y1 >= _y0 {
 		draw_rounded_line(_x0, _y0, _x1, _y0, 4, _c)

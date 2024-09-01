@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if gamestate() != STATE_BUILD {
+if gamestate() != STATE_BUILD || !mouseholder_available() {
 	exit
 }
 

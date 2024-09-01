@@ -11,7 +11,7 @@ instance_create_ui(room_width/2, room_height/2, obj_restart_button, {
 	callback: physics_reset_world,
 })
 
-instance_create_ui(128, room_height - 48, obj_start_button, {
+instance_create_ui(128, room_height - 96, obj_start_button, {
 	enabled_state: STATE_BUILD,
 	callback: function() { gamestate_set(STATE_RUN) },
 })

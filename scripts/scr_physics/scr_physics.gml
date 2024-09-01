@@ -60,6 +60,7 @@ function physics_setup_camera() {
 	assign_camera(obj_camera, watermelon)
 	obj_background.x0 = obj_watermelon.xstart
 	obj_background.y0 = obj_watermelon.ystart
+	
 }
 
 function add_line(_x0, _y0, _x1, _y1) {

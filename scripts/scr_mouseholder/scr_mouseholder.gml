@@ -33,7 +33,7 @@ function mouseholder_free(_holder) {
 }
 
 function mouseholder_assign(_holder, _hold, _release) {
-	if global.mouse_holder.holder == undefined {
+	if mouseholder_available() {
 		if global.debug {
 			show_debug_message("assigned holder to {0}", _holder)
 		}
@@ -46,6 +46,10 @@ function mouseholder_assign(_holder, _hold, _release) {
 	if global.debug {
 		show_debug_message("unable to assign holder")
 	}
+}
+
+function mouseholder_available() {
+	return global.mouse_holder.holder == undefined
 }
 
 function mouse_holder_none(_holder) {}
