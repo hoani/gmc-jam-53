@@ -41,6 +41,11 @@ function game_update() {
 	
 	if global.state.mono == 0 {
 		update_game_music() 
+		if gamestate() == STATE_BUILD || gamestate() == STATE_RUN {
+			with(obj_control) {
+				canvas_switch(canvas)
+			}
+		}
 	}
 	
 	state_update(global.state)

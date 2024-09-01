@@ -1,13 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if global.state.current == enabled_state {
-	if global.state.mono > BUTTON_FADE_OUT_FRAMES { // Warm up first.
+if gamestate() == enabled_state {
+	if global.state.mono > fade_out_frames { // Warm up first.
 		visible = true
-		image_alpha = min(image_alpha + 1/BUTTON_FADE_IN_FRAMES, 1.0)
+		image_alpha = min(image_alpha + 1/fade_in_frames, 1.0)
 	}
 } else if image_alpha > 0 {
-	image_alpha = max(image_alpha - 1/BUTTON_FADE_OUT_FRAMES, 0.0)
+	image_alpha = max(image_alpha - 1/fade_out_frames, 0.0)
 } else {
 	visible = false
 }

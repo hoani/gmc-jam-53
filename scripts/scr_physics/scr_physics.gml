@@ -47,15 +47,10 @@ function physics_new_world() {
 }
 
 function physics_destroy_world() {
-	with(obj_joint) {
-		instance_destroy()
-	}
-	with (obj_joinable) {
-		instance_destroy()
-	}	
-	with (obj_base) {
-		instance_destroy()
-	}												
+	instance_destroy(obj_joint)
+	instance_destroy(obj_joinable)
+	instance_destroy(obj_base)
+	instance_destroy(obj_watermelon)
 }
 
 function physics_setup_camera() {

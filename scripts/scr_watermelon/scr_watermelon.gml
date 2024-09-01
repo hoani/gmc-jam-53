@@ -54,4 +54,5 @@ function score_transition(){
 	assign_camera(obj_camera, noone)
 	obj_control.xmax = (x - xstart)/PIXELS_PER_METER
 	obj_control.ymax = ymax
+	instance_create(x, room_height - FLOOR_HEIGHT, obj_flag)
 }

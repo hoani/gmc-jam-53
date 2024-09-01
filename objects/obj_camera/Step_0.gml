@@ -61,26 +61,34 @@ up_scroll = false
 down_scroll = false
 
 if gamestate() == STATE_BUILD {
-	if mouse_x < (_view_x + CAMERA_MOVE_THRESHOLD) {
-		var _d = mouse_x - _view_x;
-		xoff -= 0.125*CAMERA_MAX_SPEED/min(1, _d);
-		left_scroll = true
-	}
-	if mouse_x > (_view_x + _view_w - CAMERA_MOVE_THRESHOLD) {
-		var _d = (_view_x + _view_w) - mouse_x;
-		xoff += 0.125*CAMERA_MAX_SPEED/min(1, _d);
-		right_scroll = true
+	
+	var _centered_y = mouse_y == clamp(mouse_y, _view_y + 0.25*_view_h, _view_y + 0.75*_view_h);
+	var _centered_x = mouse_x == clamp(mouse_x, _view_x + 0.25*_view_w, _view_x + 0.75*_view_w);
+	
+	if _centered_y {
+		if mouse_x < (_view_x + CAMERA_MOVE_THRESHOLD) {
+			var _d = mouse_x - _view_x;
+			xoff -= 0.125*CAMERA_MAX_SPEED/min(1, _d);
+			left_scroll = true
+		}
+		if mouse_x > (_view_x + _view_w - CAMERA_MOVE_THRESHOLD) {
+			var _d = (_view_x + _view_w) - mouse_x;
+			xoff += 0.125*CAMERA_MAX_SPEED/min(1, _d);
+			right_scroll = true
+		}
 	}
 	
-	if mouse_y < (_view_y + CAMERA_MOVE_THRESHOLD) {
-		var _d = mouse_y - _view_y;
-		yoff -= 0.125*CAMERA_MAX_SPEED/min(1, _d);
-		up_scroll = true
-	}
-	if mouse_y > (_view_y + _view_h - CAMERA_MOVE_THRESHOLD) {
-		var _d = (_view_y + _view_h) - mouse_y;
-		yoff += 0.125*CAMERA_MAX_SPEED/min(1, _d);
-		down_scroll = true
+	if _centered_x {
+		if mouse_y < (_view_y + CAMERA_MOVE_THRESHOLD) {
+			var _d = mouse_y - _view_y;
+			yoff -= 0.125*CAMERA_MAX_SPEED/min(1, _d);
+			up_scroll = true
+		}
+		if mouse_y > (_view_y + _view_h - CAMERA_MOVE_THRESHOLD) {
+			var _d = (_view_y + _view_h) - mouse_y;
+			yoff += 0.125*CAMERA_MAX_SPEED/min(1, _d);
+			down_scroll = true
+		}
 	}
 	
 	xoff = clamp(xoff, -(room_width/2 - 64), (room_width/2 - 64))	
