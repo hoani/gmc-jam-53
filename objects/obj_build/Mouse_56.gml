@@ -11,17 +11,22 @@ var _y1 = mouse_y
 
 var _r = point_distance(x0, y0, _x1, _y1)
 
-if _r < 32 {
+if !can_build(selection, _r) {
 	return	
 }
 
 function do_welds(_inst, _x1, _y1) {
 	if obj0 != noone {
-		weld_objects(_inst, obj0, x0, y0)
+		var _x = (x0 + v0.x)/2;
+		var _y = (y0 + v0.y)/2;
+		weld_objects(_inst, obj0, _x, _y)
 	}
 	var _obj1 = detector.candidate
+	var _v1 = detector.position
 	if _obj1 != obj0 && _obj1 != noone {
-		weld_objects(_inst, _obj1, _x1, _y1)
+		var _x = (_x1 + _v1.x)/2;
+		var _y = (_y1 + _v1.y)/2;
+		weld_objects(_inst, _obj1, _x, _y)
 	}
 }
 

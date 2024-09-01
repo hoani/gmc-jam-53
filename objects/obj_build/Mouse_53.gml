@@ -9,4 +9,5 @@ state = BUILD_STATE_DRAG
 x0 = mouse_x
 y0 = mouse_y
 obj0 = detector.candidate
+v0 = detector.position
 

@@ -85,6 +85,7 @@
     {"id":{"name":"scr_game","path":"scripts/scr_game/scr_game.yy",},},
     {"id":{"name":"scr_geometry","path":"scripts/scr_geometry/scr_geometry.yy",},},
     {"id":{"name":"scr_instance","path":"scripts/scr_instance/scr_instance.yy",},},
+    {"id":{"name":"scr_join","path":"scripts/scr_join/scr_join.yy",},},
     {"id":{"name":"scr_mouseholder","path":"scripts/scr_mouseholder/scr_mouseholder.yy",},},
     {"id":{"name":"scr_music","path":"scripts/scr_music/scr_music.yy",},},
     {"id":{"name":"scr_particles","path":"scripts/scr_particles/scr_particles.yy",},},

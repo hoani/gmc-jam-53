@@ -8,6 +8,7 @@
 state = BUILD_STATE_IDLE
 x0 = 0;
 y0 = 0;
+v0 = new Vector2(0, 0);
 obj0 = noone
 
 #macro BUILD_LINE 0

@@ -217,6 +217,52 @@ function draw_watermelon(_x, _y, _angle, _c) {
 	}
 }
 
+function draw_joint( _angle, _circles, _joint, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_joint_build( _angle, _circles, _joint, _c)
+	} else {
+		draw_joint_play( _angle, _circles, _joint, _c)
+	}
+}
+
+function draw_joint_build(_angle, _circles, _joint, _c) {
+	var _x = physics_joint_get_value(_joint, phy_joint_anchor_1_x);
+	var _y = physics_joint_get_value(_joint, phy_joint_anchor_1_y);
+
+	draw_circles_build(_x, _y, 8, _angle, _circles, _c)	
+}
+
+function draw_joint_play(_angle, _circles, _joint, _c) {
+	var _x = physics_joint_get_value(_joint, phy_joint_anchor_1_x);
+	var _y = physics_joint_get_value(_joint, phy_joint_anchor_1_y);
+	
+	var _c0 = merge_color(#11aa11, c_aqua, 0.5);
+	var _c1 = merge_color(#117711, c_aqua, 0.5);
+	var _c2 = merge_color(#114422, c_aqua, 0.5);
+	
+	if _c != c_white {
+		_c0 = merge_color(_c0, _c, 0.5);
+		_c1 = merge_color(_c1, _c, 0.5);
+		_c2 = merge_color(_c1, _c, 0.5);	
+	}
+
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+	
+	
+	
+	for (var _i = 0; _i < array_length(_circles.fill); _i++) {
+		var _circle_angle = _angle + _circles.fill[_i].angle;
+		var _dv = angletovec2(_circle_angle)
+		
+		draw_circle_color(_x + _dv.x*4, _y + _dv.y*4, 4, _c0, _c0, false)		
+		draw_circle_color(_x - _dv.x*4, _y - _dv.y*4, 4, _c0, _c0, false)			
+		draw_circle_color(_x, _y, 6, _c1, _c1, false)	
+		draw_ellipse_color(_x-3, _y-2, _x+3, _y+2, _c0, _c0, false)
+
+	}
+}
+
 function draw_rounded_line(_x0, _y0, _x1, _y1, _w, _c){
 	draw_rounded_line2(_x0, _y0, _x1, _y1, _w, _c, _c)
 }
