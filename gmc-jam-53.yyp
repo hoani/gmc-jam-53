@@ -144,6 +144,7 @@
     {"id":{"name":"spr_game","path":"sprites/spr_game/spr_game.yy",},},
     {"id":{"name":"spr_help_button","path":"sprites/spr_help_button/spr_help_button.yy",},},
     {"id":{"name":"spr_help","path":"sprites/spr_help/spr_help.yy",},},
+    {"id":{"name":"spr_icon","path":"sprites/spr_icon/spr_icon.yy",},},
     {"id":{"name":"spr_instruction_mouse","path":"sprites/spr_instruction_mouse/spr_instruction_mouse.yy",},},
     {"id":{"name":"spr_instruction_touch","path":"sprites/spr_instruction_touch/spr_instruction_touch.yy",},},
     {"id":{"name":"spr_joinable_base","path":"sprites/spr_joinable_base/spr_joinable_base.yy",},},

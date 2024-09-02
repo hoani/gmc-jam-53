@@ -5,7 +5,6 @@ if gamestate() == enabled_state {
 
 	if delay >= 0 {
 		delay-=1
-		show_debug_message($"delay {delay}")
 	} else {
 		event_inherited()
 	}
