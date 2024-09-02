@@ -16,28 +16,29 @@ if gamestate() == STATE_BUILD {
 	draw_sprite_stretched(spr_blueprint, 0, global.drawx + _x0, global.drawy + _y0,  _x1 - _x0,  _y1 - _y0)
 	_c_major = #8AB5DC
 	_c_minor = #669CCC 
-}
-
-
-for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
+	
+	for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
 	var _m = (_x - x0) / PIXELS_PER_METER;
 	var _c = _c_minor;
 	if _m % 5 == 0 {
 		_c = _c_major
 	}
 	draw_rounded_line( _x, _y0,_x, _y1, 1, _c)
-}
-
-
-
-for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
-	var _m = -((_y - y0)) / PIXELS_PER_METER;
-	var _c = _c_minor;
-	if _m % 5 == 0 {
-		_c = _c_major
 	}
-	draw_rounded_line( _x0, _y,_x1, _y, 1, _c)
+
+	for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
+		var _m = -((_y - y0)) / PIXELS_PER_METER;
+		var _c = _c_minor;
+		if _m % 5 == 0 {
+			_c = _c_major
+		}
+		draw_rounded_line( _x0, _y,_x1, _y, 1, _c)
+	}
+} else {
+	draw_sprite_stretched(spr_game, 0, global.drawx + _x0, global.drawy + _y0,  _x1 - _x0,  _y1 - _y0)
 }
+
+
 
 draw_set_font(fnt_measure) 
 draw_set_color(c_ltgray)

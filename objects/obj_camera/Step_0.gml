@@ -38,19 +38,32 @@ if gamestate() == STATE_RUN || gamestate() == STATE_SCORE || gamestate() == STAT
 
 
 	if instance_exists(assigned.inst) {
-		var _max_spd = CAMERA_MAX_SPEED * _zoom;
+		var _max_spd = (CAMERA_MAX_SPEED) * _zoom;
 		var _dx = xoff - (assigned.inst.x - assigned.xoff);
-		var _dy = yoff - min(0, (assigned.inst.y - assigned.yoff)/(sqrt(scale)));
+		var _dy = yoff - min(0, (assigned.inst.phy_position_y - assigned.yoff)/(sqrt(scale)));
 	
 		camera_speed = lerp(camera_speed, min(max(abs(_dx), abs(_dy)), _max_spd), 1)
 	
 		// Follow logic.
 		xoff += clamp(-_dx, -camera_speed, camera_speed)
 		yoff += clamp(-_dy, -camera_speed, camera_speed)
+		
+		var _axoff = 0;
+		var _ayoff = 0;
+
+		if instance_exists(assigned.inst) {
+			_axoff = assigned.inst.x - assigned.xoff;
+			_ayoff = assigned.inst.y - assigned.yoff;
+		}
+	
+	
+		xoff = clamp(xoff, _axoff-(_new_w/2 - 64), _axoff+(_new_w/2 - 64))	
+		yoff = clamp(yoff, _ayoff-(_new_h/2 - 64), min(0, _ayoff+(_new_h/2 - 64)))
 
 	} 
 	var _xoff = xoff - (_new_w - default_zoom_width)/2;
 	var _yoff = yoff - (_new_h - default_zoom_height);
+	
 	camera_set_view_pos(view_camera[0], floor(_xoff), floor(_yoff));
 }
 
@@ -59,6 +72,15 @@ left_scroll = false
 right_scroll = false
 up_scroll = false
 down_scroll = false
+
+if gamestate() == STATE_RESTART {
+	if xoff > PIXELS_PER_METER * 20 {
+		xoff -= PIXELS_PER_METER*5;	
+	}
+	if xoff < -PIXELS_PER_METER * 20 {
+		xoff += PIXELS_PER_METER*5;	
+	}
+}
 
 if gamestate() == STATE_BUILD {
 	

@@ -26,6 +26,7 @@ function game_init(){
 	init_mouseholder()
 	
 	music_start(snd_music_build)
+	randomize(); 
 	
 	global.drawx = 0
 	global.drawy = 0
@@ -59,8 +60,16 @@ function update_game_music() {
 			}
 			break	
 		case STATE_RUN:
-			music_stop()
+			if !audio_is_playing(snd_music_run) {
+				music_start(snd_music_run)
+			}
 			break
+		case STATE_SCORE:
+			music_stop()
+			var _x = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0])/2
+			var _y = camera_get_view_y(view_camera[0]) + camera_get_view_height(view_camera[0])/2
+
+			instance_create(_x, _y, obj_sfx, {snd: snd_score}) 
 	}
 }
 

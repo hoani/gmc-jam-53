@@ -21,16 +21,16 @@ function materials_init(){
 		{
 			description: "Wooden Beam\nBuild strctures with this\nlightweight beam.",
 			base: 10,
-			count: 0,
+			count: 5,
 		},
 		{
 			description: "Ball\nA weighted ball.\nRolls on surfaces.",
 			base: 4,
-			count: 0,
+			count: 2,
 		},
 		{
 			description: "Scaffolding\nProvdies structure without\ngetting in the way.",
-			base: 10,
+			base: 6,
 			count: 0,
 		},
 		{
@@ -45,7 +45,7 @@ function materials_init(){
 		},
 		{
 			description: "Shelf\nA horizontal wall\nmounted surface.",
-			base: 2,
+			base: 1,
 			count: 0,
 		},
 		{
@@ -55,7 +55,7 @@ function materials_init(){
 		},
 		{
 			description: "Bearing\nSpin materials around\neachother!",
-			base: 3,
+			base: 2,
 			count: 0,
 		},
 		{
@@ -67,6 +67,7 @@ function materials_init(){
 }
 
 function selections_init(_materials) {
+	
 	#macro BUILD_NUM_SELECTIONS 6
 	var _selections = [];
 
