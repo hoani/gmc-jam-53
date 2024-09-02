@@ -26,8 +26,8 @@ for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
 		_c = _c_major
 	}
 	draw_rounded_line( _x, _y0,_x, _y1, 1, _c)
-	draw_text(global.drawx +_x,global.drawy + _y0+32, $"{_m}m")
 }
+
 
 
 for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
@@ -37,5 +37,38 @@ for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
 		_c = _c_major
 	}
 	draw_rounded_line( _x0, _y,_x1, _y, 1, _c)
-	draw_text(global.drawx +_x0 + 64, global.drawy +_y+32, $"{_m}m")
 }
+
+draw_set_font(fnt_measure) 
+draw_set_color(c_ltgray)
+draw_set_halign(fa_right)
+draw_set_valign(fa_bottom)
+
+if gamestate() == STATE_BUILD {
+	
+
+	for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
+		var _m = (_x - x0) / PIXELS_PER_METER;
+		draw_text(global.drawx +_x, global.drawy + y0, $"{_m}m")
+	}
+
+
+	for (var _y = _y0; _y < _y1; _y += PIXELS_PER_METER) {
+		var _m = -((_y - y0)) / PIXELS_PER_METER;
+	
+		if abs(_m) > 0.5 { // Don't draw zero.
+			draw_text(global.drawx +x0, global.drawy +_y, $"{_m}m")
+		}
+	}
+} else if gamestate() == STATE_SCORE {
+	for (var _x = _x0; _x < _x1; _x += PIXELS_PER_METER) {
+		var _m = (_x - x0) / PIXELS_PER_METER;
+		draw_text(global.drawx +_x, camera_get_view_height(_cam) - FLOOR_HEIGHT*obj_camera.scale, $"{_m}m")
+	}
+	
+}
+
+draw_set_font(fnt_default) 
+draw_set_color(c_white)
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)

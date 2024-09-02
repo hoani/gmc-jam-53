@@ -10,10 +10,5 @@ ymax = max(ymax, _ym)
 
 if stop_detection_update(sd, phy_speed_x, phy_speed_y) {
 	score_transition()
-} else if phy_speed_y >= 0  {
-	var _ybottom = (phy_position_y + phy_speed_y + 1 + FLOOR_HEIGHT + radius);
-	if _ybottom >= obj_control.game_floor.y {
-		score_transition()
-	}
 }
 

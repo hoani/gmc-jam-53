@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_smash",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_smash",
+  "parent":{
+    "name":"particles",
+    "path":"folders/Scripts/particles.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -16,6 +16,6 @@ function assign_camera(_camera, _inst) {
 
 	if instance_exists(_inst) {
 		_camera.assigned.xoff = _inst.x
-		_camera.assigned.yoff = 0
+		_camera.assigned.yoff = room_height/2
 	}
 }

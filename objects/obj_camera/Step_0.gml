@@ -40,7 +40,7 @@ if gamestate() == STATE_RUN || gamestate() == STATE_SCORE || gamestate() == STAT
 	if instance_exists(assigned.inst) {
 		var _max_spd = CAMERA_MAX_SPEED * _zoom;
 		var _dx = xoff - (assigned.inst.x - assigned.xoff);
-		var _dy = yoff - (min(assigned.inst.y - assigned.yoff, 0))
+		var _dy = yoff - (min(assigned.inst.y - assigned.yoff, 0))/scale
 	
 		camera_speed = lerp(camera_speed, min(max(abs(_dx), abs(_dy)), _max_spd), 1)
 	

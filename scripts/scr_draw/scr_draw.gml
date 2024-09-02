@@ -24,3 +24,7 @@ function draw_rectangle_rotated(_x, _y, _w, _h, _angle, _c, _outline) {
 			_c, _c, _c, false);
 	}
 }
+
+function draw_world_sprite() {
+	draw_sprite_ext(sprite_index, image_index, global.drawx + x, global.drawy + y, image_xscale, image_yscale, image_angle, c_white, image_alpha)
+}
