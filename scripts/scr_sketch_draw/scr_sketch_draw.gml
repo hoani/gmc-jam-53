@@ -334,7 +334,66 @@ function draw_wheel_play(_x, _y, _angle, _circles, _c) {
 
 	draw_sprite_ext(spr_wheel, 0, _x, _y, 1, 1, _angle + _circles.fill[0].angle, _c, 1)	
 	draw_sprite_ext(spr_wheel, 1, _x, _y, 1, 1, 0, _c, 1)
+}
 
+function draw_bearing(_x, _y, _angle, _circles, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_bearing_build(_x, _y, _angle,_circles, _c)
+	} else {
+		draw_bearing_play(_x, _y,_angle, _circles, _c)
+	}
+}
+
+function draw_bearing_build(_x, _y, _angle, _circles, _c) {
+	
+	var _radius = 16;
+		
+	var _dx = dcos(_angle);
+	var _dy = dsin(-_angle);
+		
+	for (var _i = 0; _i < array_length(_circles.outline); _i++) {
+		var _offsets = _circles.outline[_i];
+		var _circle_radius = _offsets.radius + _radius;
+		
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-1, _c, _c, true)
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-6, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-7, _c, _c, true)
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius/4, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius/4-1, _c, _c, true)
+	}
+}
+
+function draw_bearing_play(_x, _y, _angle, _circles, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_bearing, 0, _x, _y, 1, 1, _angle + _circles.fill[0].angle, _c, 1)	
+}
+
+function draw_rocket(_x, _y, _angle, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_rocket_build(_x, _y, _angle, _c)
+	} else {
+		draw_rocket_play(_x, _y, _angle, _c)
+	}
+}
+
+function draw_rocket_build(_x, _y, _angle, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_rocket_sketch, floor(_x) % 3, _x, _y, 1, 1, _angle, _c, 1)	
+}
+
+function draw_rocket_play(_x, _y, _angle, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_rocket, 0, _x, _y, 1, 1, _angle, _c, 1)	
 }
 
 

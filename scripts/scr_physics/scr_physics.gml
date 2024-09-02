@@ -172,15 +172,53 @@ function add_wheel(_x, _y) {
 	physics_fixture_set_density(_fix, 0.25);
 	physics_fixture_set_restitution(_fix, 0.75);
 	
-	
 	var _inst = instance_create(_x, _y, obj_wheel)
 	physics_fixture_bind(_fix, _inst);
 	physics_fixture_delete(_fix);
 	
+	return _inst
+}
 
+
+function add_bearing(_x, _y) {
+	var _fix = physics_fixture_create();
+	physics_fixture_set_circle_shape(_fix, 16);
+	physics_fixture_set_density(_fix, 0.25);
+	physics_fixture_set_restitution(_fix, 1/32);
+	
+	var _inst = instance_create(_x, _y, obj_bearing)
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
 	
 	return _inst
 }
+
+function add_rocket(_x, _y, _dir) {
+	var _fix = physics_fixture_create();
+
+	physics_fixture_set_polygon_shape(_fix);
+	physics_fixture_add_point(_fix, 0, -32)
+	physics_fixture_add_point(_fix, 16, -16)
+	physics_fixture_add_point(_fix, 16, 24)
+	physics_fixture_add_point(_fix, -16, 24)
+	physics_fixture_add_point(_fix, -16, -24)
+
+	physics_fixture_set_density(_fix, 1);
+	physics_fixture_set_restitution(_fix, 0.4);
+	
+	
+	var _inst = instance_create(_x, _y, obj_rocket, {image_angle: _dir})
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	_inst.phy_rotation = -_dir
+	_inst.phy_fixed_rotation = false;
+	
+	_inst.phy_bullet = true;
+	
+	return _inst;
+}
+
+
 
 
 function add_watermelon(_x, _y, _r) {

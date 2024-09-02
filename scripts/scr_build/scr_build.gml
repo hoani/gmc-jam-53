@@ -30,10 +30,14 @@ function can_build(_selection, _length) {
 		case MATERIAL_ANCHOR:
 		case MATERIAL_PEG:
 		case MATERIAL_WHEEL:
+		case MATERIAL_BEARING:
+		case MATERIAL_ROCKET:
 			return true
 		case MATERIAL_SHELF:
 			return _length > MIN_SHELF_LENGTH
 	}
+	
+	return false
 }
 
 
@@ -117,8 +121,15 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 			}
 			break;
 		case MATERIAL_BEARING:
-			var _wcircles = init_circles(8, 0.25);
-			draw_wheel(mouse_x, mouse_y, 0, _wcircles, _c_place)
+			var _bcircles = init_circles(8, 0.25);
+			draw_bearing(mouse_x, mouse_y, 0, _bcircles, _c_place)
+			
+			if _can_build {
+				draw_joint_candidate(_detector)
+			}
+			break;
+		case MATERIAL_ROCKET:
+			draw_rocket(mouse_x, mouse_y, _angle, _c_place)
 			
 			if _can_build {
 				draw_joint_candidate(_detector)

@@ -10,6 +10,7 @@ var _x1 = mouse_x
 var _y1 = mouse_y
 
 var _r = point_distance(x0, y0, _x1, _y1)
+var _dir = point_direction(x0, y0, _x1, _y1)
 
 var _selection = selections[selection]
 
@@ -80,6 +81,18 @@ switch _selection.material {
 		obj0 = noone // Do not weld to obj0.
 		_inst = add_wheel(_x1, _y1);
 		do_revolute(_inst, _x1, _y1)
+		
+		break;
+	case MATERIAL_BEARING:
+		obj0 = noone // Do not weld to obj0.
+		_inst = add_bearing(_x1, _y1);
+		do_revolute(_inst, _x1, _y1)
+		
+		break;
+	case MATERIAL_ROCKET:
+		obj0 = noone // Do not weld to obj0.
+		_inst = add_rocket(_x1, _y1, _dir);
+		do_welds(_inst, _x1, _y1)
 		
 		break;
 	default:

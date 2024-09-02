@@ -20,6 +20,7 @@
     {"$GMSpriteFrame":"","%Name":"e08923fb-4ccc-435e-ae5d-b1526fdd3bdb","name":"e08923fb-4ccc-435e-ae5d-b1526fdd3bdb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"adc7f6db-295f-4fca-b1f4-6b07e5ad0d52","name":"adc7f6db-295f-4fca-b1f4-6b07e5ad0d52","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"7b08486c-9d0f-4e87-8887-3a2e134f9870","name":"7b08486c-9d0f-4e87-8887-3a2e134f9870","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"54a30348-633e-42fc-a266-13f2410bf9a5","name":"54a30348-633e-42fc-a266-13f2410bf9a5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -56,7 +57,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":8.0,
+    "length":9.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -99,6 +100,9 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7b08486c-9d0f-4e87-8887-3a2e134f9870","path":"sprites/spr_tool_icon/spr_tool_icon.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"48d303b9-9c63-4ccd-a9aa-82a72037458b","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"54a30348-633e-42fc-a266-13f2410bf9a5","path":"sprites/spr_tool_icon/spr_tool_icon.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"a818c23b-5157-4af9-9033-9b741bb043a9","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

@@ -10,6 +10,7 @@
 #macro MATERIAL_SHELF 5
 #macro MATERIAL_WHEEL 6
 #macro MATERIAL_BEARING 7
+#macro MATERIAL_ROCKET 8
 
 function materials_init(){
 	return [
@@ -52,6 +53,11 @@ function materials_init(){
 			description: "Bearing.\nA spinning bearing for joining\nto other materials.",
 			value: 4,
 			count: 0,
+		},
+		{
+			description: "Rocket.\nApplies thrust for 2 seconds.\nCatch it while you can!",
+			value: 4,
+			count: 0,
 		}
 	]
 }
@@ -85,7 +91,7 @@ function selections_init(_materials) {
 	_selections[0].material = MATERIAL_LINE
 	_selections[1].material = MATERIAL_BALL
 	_selections[2].material = MATERIAL_WHEEL
-	_selections[3].material = MATERIAL_BEARING
+	_selections[3].material = MATERIAL_ROCKET
 	_selections[4].material = MATERIAL_PEG
 	_selections[5].material = MATERIAL_SHELF
 
@@ -98,6 +104,7 @@ function selections_init(_materials) {
 	_materials[MATERIAL_SHELF].count = 10
 	_materials[MATERIAL_WHEEL].count = 4
 	_materials[MATERIAL_BEARING].count = 4
+	_materials[MATERIAL_ROCKET].count = 2
 	
 	return _selections
 }

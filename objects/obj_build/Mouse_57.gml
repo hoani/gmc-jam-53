@@ -9,7 +9,13 @@ state = BUILD_STATE_IDLE
 
 if instance_exists(delete_detector.candidate) {
 	if delete_detector.candidate.material != MATERIAL_NONE {
-		materials[delete_detector.candidate.material].count++
+		if delete_detector.candidate.material == MATERIAL_ROCKET {
+			if !delete_detector.candidate.has_fired {
+				materials[delete_detector.candidate.material].count++
+			}
+		} else {
+			materials[delete_detector.candidate.material].count++
+		}
 	}
 	
 	instance_destroy(delete_detector.candidate)

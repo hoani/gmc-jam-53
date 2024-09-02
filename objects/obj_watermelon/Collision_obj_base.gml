@@ -20,7 +20,7 @@ if _impact < 2 {
 var _parts = _impact/16;
 
 function create_smash(_obj, _struct) {
-	_struct.phy_speed_x = sign(phy_speed_x) + random(abs(phy_speed_x)*1.5)
+	_struct.phy_speed_x = sign(phy_speed_x) + (random(1)-0.5)*abs(phy_speed_x)*1.5
 	_struct.phy_speed_y = 2*phy_speed_y + (1-random(2))
 
 	var _x = x + (random(1) - 2) *4;
