@@ -26,7 +26,8 @@ function physics_reset_world() {
 	}
 	
 	with (obj_build) {
-		selections_init(materials)
+		materials = materials_init()
+		selections = selections_init(materials)
 	}
 }
 
