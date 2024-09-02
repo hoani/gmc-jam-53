@@ -6,8 +6,8 @@
   "name":"obj_collisionless",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"parent",
+    "path":"folders/Objects/physics/parent.yy",
   },
   "parentObjectId":null,
   "persistent":false,

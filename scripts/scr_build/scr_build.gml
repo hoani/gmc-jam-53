@@ -1,11 +1,14 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
+#macro MIN_SHELF_LENGTH 32
 #macro MIN_LINE_LENGTH 24
 #macro MIN_CIRCLE_RADIUS 16
 
 #macro BUILD_C_JOIN #66eedd
 #macro BUILD_C_LINE #dddddd
+#macro BUILD_C_SCAFFOLDING #aaaaff
+
 
 #macro BUILD_C_CANNOT_PLACE #ee4444
 #macro BUILD_C_DELETE #ff2222
@@ -14,11 +17,22 @@
 
 
 function can_build(_selection, _length) {
-	switch _selection.tool {
-		case TOOL_LINE:
+	if materials[_selection.material].count <= 0 {
+		return false
+	}
+	
+	switch _selection.material {
+		case MATERIAL_LINE:
+		case MATERIAL_SCAFFOLDING:
 			return _length > MIN_LINE_LENGTH
-		case TOOL_BALL:
+		case MATERIAL_BALL:
 			return _length > MIN_CIRCLE_RADIUS
+		case MATERIAL_ANCHOR:
+		case MATERIAL_PEG:
+		case MATERIAL_WHEEL:
+			return true
+		case MATERIAL_SHELF:
+			return _length > MIN_SHELF_LENGTH
 	}
 }
 
@@ -43,8 +57,9 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 		
 		var _c_place = _can_build ? BUILD_C_PLACE : BUILD_C_CANNOT_PLACE;
 			
-		switch _selection.tool {
-			case TOOL_LINE:
+		switch _selection.material {
+		case MATERIAL_LINE:
+		case MATERIAL_SCAFFOLDING:
 			
 				var _lines = init_lines(_length, 0.25);
 				draw_lines((_x0 + mouse_x)/2, (_y0 + mouse_y)/2, _length, _angle, _lines, _c_place)
@@ -58,7 +73,7 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 					draw_joint_candidate(_detector)
 				}
 			break;
-			case TOOL_BALL:
+		case MATERIAL_BALL:
 				var _r = point_distance(_x0, _y0, mouse_x, mouse_y)
 				var _ccircles = init_circles(_r, 0.25);
 				draw_circles(_x0, _y0, _r, _angle, _ccircles, _c_place)
@@ -72,18 +87,48 @@ function build_draw(_obj0, _x0, _y0, _detector, _state, _selection) {
 					draw_joint_candidate(_detector)
 				}
 			break;
+		case MATERIAL_ANCHOR:
+				var _acircles = init_circles(8, 0.25);
+				draw_anchor(mouse_x, mouse_y,  _acircles, _c_place)
+			
+				if _can_build  {
+					draw_joint_candidate(_detector)
+				}
+			break;
+		case MATERIAL_PEG:
+			var _pcircles = init_circles(8, 0.25);
+			draw_peg(mouse_x, mouse_y,  _pcircles, _c_place)
+			
+			if _can_build  {
+				draw_joint_candidate(_detector)
+			}
+			break;
+		case MATERIAL_SHELF:
+			var _slines = init_lines(_length, 0.25);
+			draw_shelf((_x0 + mouse_x)/2, mouse_y, _length, _slines, _c_place)
+			
+			break;
+		case MATERIAL_WHEEL:
+			var _wcircles = init_circles(8, 0.25);
+			draw_wheel(mouse_x, mouse_y, 0, _wcircles, _c_place)
+			
+			if _can_build {
+				draw_joint_candidate(_detector)
+			}
+			break;
+		case MATERIAL_BEARING:
+			var _wcircles = init_circles(8, 0.25);
+			draw_wheel(mouse_x, mouse_y, 0, _wcircles, _c_place)
+			
+			if _can_build {
+				draw_joint_candidate(_detector)
+			}
+			break;
 		}
 	}
 	if _state == BUILD_STATE_IDLE {
-		draw_joint_candidate(_detector)
-	}
-
-	switch _selection.tool {
-		case TOOL_LINE:
-			draw_text(0, room_height-48, "line")
-		break;
-		case TOOL_BALL:
-			draw_text(0, room_height-48, "circle")
-		break;
+		if _selection.material != MATERIAL_SHELF {
+			draw_joint_candidate(_detector)
+		}
 	}
 }

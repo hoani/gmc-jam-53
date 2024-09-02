@@ -11,8 +11,8 @@
   "name":"obj_delete_detection",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"utility",
+    "path":"folders/Objects/physics/utility.yy",
   },
   "parentObjectId":null,
   "persistent":false,

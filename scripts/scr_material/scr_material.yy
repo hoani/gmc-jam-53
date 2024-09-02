@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_material",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_material",
+  "parent":{
+    "name":"build",
+    "path":"folders/Scripts/build.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

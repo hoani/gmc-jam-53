@@ -48,10 +48,30 @@ function draw_lines_play(_x, _y, _length, _angle, _lines, _c) {
 	}
 	
 	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c0, false)
-	
-
 	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c1, true)	
 }
+
+function draw_scaffold(_x, _y, _length, _angle, _lines, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_lines_build(_x, _y, _length, _angle, _lines, _c)
+	} else {
+		draw_scaffold_play(_x, _y, _length, _angle, _lines, _c)
+	}
+}
+
+
+function draw_scaffold_play(_x, _y, _length, _angle, _lines, _c) {
+	var _c0 = #0088bb;	
+	var _c1 = #0055cc;
+
+	if _c != c_white {
+		_c0 = merge_color(_c0, _c, 0.5);
+	}
+	
+	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c0, false)
+	draw_rectangle_rotated(_x, _y, _length, 4, _angle, _c1, true)	
+}
+
 
 function init_circles(_radius, _jitter = 1) {
 	var _max_radius_jitter = _radius/32 + 2.0;
@@ -127,9 +147,9 @@ function draw_circles_play(_x, _y, _radius, _angle, _circles, _c) {
 	_x = global.drawx + _x;
 	_y = global.drawy + _y;
 	
-	var _c0 = #bb8855;
-	var _c1 = #997744;	
-	var _c2 = #665533;
+	var _c0 = #998899;
+	var _c1 = #887788;	
+	var _c2 = #665566;
 
 	if _c != c_white {
 		_c0 = merge_color(_c0, _c, 0.5);
@@ -145,6 +165,178 @@ function draw_circles_play(_x, _y, _radius, _angle, _circles, _c) {
 	draw_sprite_ext(spr_circle_texture, 0, _x, _y, _scale, _scale, _angle + _circles.fill[0].angle,_c2 , 0.25)
 	draw_circle_color(_x, _y, _radius, c_black, c_black, true)
 }
+
+
+function draw_anchor(_x, _y, _circles, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_anchor_build(_x, _y, _circles, _c)
+	} else {
+		draw_anchor_play(_x, _y, _circles, _c)
+	}
+}
+
+function draw_anchor_build(_x, _y, _circles, _c) {
+	
+	var _r = 8;
+		
+	for (var _i = 0; _i < array_length(_circles.outline); _i++) {
+		var _offsets = _circles.outline[_i];
+		var _circle_radius = _offsets.radius + _r;
+		
+		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius-1, _c, _c, true)
+
+	}
+	
+	for (var _i = 0; _i < array_length(_circles.fill); _i++) {
+		var _offsets = _circles.fill[_i];
+		var _fill_angle = _offsets.angle;
+		var _fx = dcos(_fill_angle);
+		var _fy = dsin(-_fill_angle);
+		
+		var _x0 = _fx * _r;
+		var _y0 = _fy * _r;
+
+		draw_rounded_line(_x - _x0, _y - _y0, _x + _x0, _y + _y0, 2, _c)
+	}
+}
+
+function draw_anchor_play(_x, _y, _circles, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_anchor, 0, _x, _y, 1, 1, _circles.fill[0].angle, _c, 1)
+}
+
+function draw_peg(_x, _y, _circles, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_peg_build(_x, _y, _circles, _c)
+	} else {
+		draw_peg_play(_x, _y, _circles, _c)
+	}
+}
+
+function draw_peg_build(_x, _y, _circles, _c) {
+	
+	var _r = 12;
+		
+	for (var _i = 0; _i < array_length(_circles.outline); _i++) {
+		var _offsets = _circles.outline[_i];
+		var _circle_radius = _offsets.radius + _r;
+		
+		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius-1, _c, _c, true)
+		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius/2, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _offsets.dx, global.drawy + _y + _offsets.dy, _circle_radius/2-1, _c, _c, true)
+	}
+	
+}
+
+function draw_peg_play(_x, _y, _circles, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_peg, 0, _x, _y, 1, 1, _circles.fill[0].angle, _c, 1)
+}
+
+function draw_shelf(_x, _y, _length, _lines, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_shelf_build(_x, _y, _length, _lines, _c)
+	} else {
+		draw_shelf_play(_x, _y, _length, _lines, _c)
+	}
+}
+
+function draw_shelf_build(_x, _y, _length, _lines, _c) {
+	for (var _i = 0; _i < array_length(_lines); _i++) {
+		var _offsets = _lines[_i];
+		var _line_length = _offsets.length + _length;
+		var _line_angle = _offsets.angle;
+	
+		var _l = get_line_points(_x + _offsets.dx, _y + _offsets.dy - 8, _line_length, _line_angle);
+		draw_rounded_line(_l.x0, _l.y0, _l.x1, _l.y1, 2, _c)
+		
+		_l = get_line_points(_x + _offsets.dx, _y + _offsets.dy + 8, _line_length, _line_angle);
+		draw_rounded_line(_l.x0, _l.y0, _l.x1, _l.y1, 2, _c)
+		
+		_l = get_line_points(_x -_line_length/2 + _offsets.dx, _y + _offsets.dy, 16, _line_angle+90);
+		draw_rounded_line(_l.x0, _l.y0, _l.x1, _l.y1, 2, _c)
+		
+		_l = get_line_points(_x +_line_length/2 + _offsets.dx, _y + _offsets.dy, 16, _line_angle+90);
+		draw_rounded_line(_l.x0, _l.y0, _l.x1, _l.y1, 2, _c)
+	}
+}
+
+function draw_shelf_play(_x, _y, _length, _lines, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+	
+	var _xscale = _length/sprite_get_width(spr_shelf);
+
+	draw_sprite_ext(spr_shelf, 0, _x, _y, _xscale, 1, 0, _c, 1)
+}
+
+function draw_wheel(_x, _y, _angle, _circles, _c) {
+	if gamestate() == STATE_BUILD {
+		draw_wheel_build(_x, _y, _angle,_circles, _c)
+	} else {
+		draw_wheel_play(_x, _y,_angle, _circles, _c)
+	}
+}
+
+function draw_wheel_build(_x, _y, _angle, _circles, _c) {
+	
+	var _radius = 32;
+		
+	var _dx = dcos(_angle);
+	var _dy = dsin(-_angle);
+		
+	for (var _i = 0; _i < array_length(_circles.outline); _i++) {
+		var _offsets = _circles.outline[_i];
+		var _circle_radius = _offsets.radius + _radius;
+		
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-1, _c, _c, true)
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-6, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius-7, _c, _c, true)
+		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius/4, _c, _c, true)		
+		draw_circle_color(global.drawx + _x + _dx*_offsets.dx, global.drawy + _y + _dy*_offsets.dy, _circle_radius/4-1, _c, _c, true)
+
+	}
+	
+	for (var _i = 0; _i < array_length(_circles.fill); _i++) {
+		var _offsets = _circles.fill[_i];
+		var _fill_angle = _angle + _offsets.angle;
+		var _fx = dcos(_fill_angle);
+		var _fy = dsin(-_fill_angle);
+		var _r = 3;
+		var _h = (7/8)*sqrt(_radius*_radius - _r*_r);
+		
+		var _x0 = _fx * _r - _fy * _h;
+		var _y0 = _fy * _r + _fx * _h;
+		var _x1 = _fx * _r + _fy * _h;
+		var _y1 = _fy * _r - _fx * _h;
+		
+		draw_rounded_line(_x + _x0, _y + _y0, _x + _x1, _y + _y1, 2, _c)		
+		draw_rounded_line(_x - _x0, _y - _y0, _x - _x1, _y - _y1, 2, _c)
+	}
+}
+
+function draw_wheel_play(_x, _y, _angle, _circles, _c) {
+	_x = global.drawx + _x;
+	_y = global.drawy + _y;
+
+	draw_sprite_ext(spr_wheel, 0, _x, _y, 1, 1, _angle + _circles.fill[0].angle, _c, 1)	
+	draw_sprite_ext(spr_wheel, 1, _x, _y, 1, 1, 0, _c, 1)
+
+}
+
 
 function draw_floor() {
 	
@@ -216,6 +408,9 @@ function draw_watermelon(_x, _y, _angle, _c) {
 		draw_circle_color(_x, _y, _r, c_black, c_black, true)
 	}
 }
+
+
+
 
 function draw_joint( _angle, _circles, _joint, _c) {
 	if gamestate() == STATE_BUILD {

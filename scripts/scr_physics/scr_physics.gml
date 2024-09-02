@@ -24,6 +24,10 @@ function physics_reset_world() {
 		physics_setup_camera()
 		gamestate_set(STATE_RESTART)
 	}
+	
+	with (obj_build) {
+		selections_init(materials)
+	}
 }
 
 
@@ -56,12 +60,12 @@ function physics_destroy_world() {
 function physics_setup_camera() {
 	camera_setup = true
 	assign_camera(obj_camera, watermelon)
-	obj_background.x0 = obj_watermelon.xstart
-	obj_background.y0 = obj_watermelon.ystart
+	obj_background.x0 = watermelon.xstart
+	obj_background.y0 = watermelon.ystart
 	
 }
 
-function add_line(_x0, _y0, _x1, _y1) {
+function add_beam(_x0, _y0, _x1, _y1, _obj, _create) {
 	var _fix = physics_fixture_create();
 	var _x = (_x0 + _x1)/2;
 	var _y = (_y0 + _y1)/2;
@@ -80,7 +84,7 @@ function add_line(_x0, _y0, _x1, _y1) {
 	physics_fixture_set_linear_damping(_fix, 1/128);
 	
 	
-	var _inst = instance_create(_x, _y, obj_line, {image_angle: _dir, length: _length})
+	var _inst = _create(_x, _y, _obj, {image_angle: _dir, length: _length})
 	physics_fixture_bind(_fix, _inst);
 	physics_fixture_delete(_fix);
 	_inst.phy_rotation = -_dir
@@ -90,6 +94,15 @@ function add_line(_x0, _y0, _x1, _y1) {
 	_inst.phy_bullet = true;
 	
 	return _inst;
+}
+
+
+function add_line(_x0, _y0, _x1, _y1) {
+	return add_beam(_x0, _y0, _x1, _y1, obj_line, instance_create);
+}
+
+function add_scaffold(_x0, _y0, _x1, _y1) {
+	return add_beam(_x0, _y0, _x1, _y1, obj_scaffold, instance_create_back);
 }
 
 
@@ -106,6 +119,69 @@ function add_ball(_x, _y, _r) {
 	_inst.phy_bullet = true;
 	return _inst;
 }
+
+function add_anchor(_x, _y) {
+	var _fix = physics_fixture_create();
+	physics_fixture_set_circle_shape(_fix, 8);
+	physics_fixture_set_kinematic(_fix);
+	
+	var _inst = instance_create(_x, _y, obj_anchor)
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	
+	return _inst
+}
+
+function add_peg(_x, _y) {
+	var _fix = physics_fixture_create();
+	physics_fixture_set_circle_shape(_fix, 8);
+	physics_fixture_set_kinematic(_fix);
+	
+	var _inst = instance_create(_x, _y, obj_peg)
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	
+	return _inst
+}
+
+function add_shelf(_x0, _x1, _y) {
+	var _fix = physics_fixture_create();
+	var _x = (_x0 + _x1)/2;
+	var _dir = 0
+	var _length = point_distance(_x0, _y, _x1, _y)
+
+	physics_fixture_set_polygon_shape(_fix);
+	physics_fixture_add_point(_fix, -_length/2, -8)
+	physics_fixture_add_point(_fix, _length/2, -8)
+	physics_fixture_add_point(_fix, _length/2, 8)
+	physics_fixture_add_point(_fix, -_length/2, 8)
+
+	physics_fixture_set_kinematic(_fix);
+	
+	var _inst = instance_create_back(_x, _y, obj_shelf, {image_angle: 0, length: _length})
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	
+	return _inst;
+}
+
+function add_wheel(_x, _y) {
+
+	var _fix = physics_fixture_create();
+	physics_fixture_set_circle_shape(_fix, 32);
+	physics_fixture_set_density(_fix, 0.25);
+	physics_fixture_set_restitution(_fix, 0.75);
+	
+	
+	var _inst = instance_create(_x, _y, obj_wheel)
+	physics_fixture_bind(_fix, _inst);
+	physics_fixture_delete(_fix);
+	
+
+	
+	return _inst
+}
+
 
 function add_watermelon(_x, _y, _r) {
 	var _fix = physics_fixture_create();
@@ -131,6 +207,13 @@ function weld_objects(_obj0, _obj1, _x, _y) {
 	physics_joint_set_value(_weld, phy_joint_angle, degtorad(_angle));
 	//show_debug_message("weld angle at {0}, {1}, is  {2} - obj0: {3} obj1: {4}, angle {5}", _x, _y, _angle, _obj0.phy_rotation, _obj1.phy_rotation, _ang)
 	var _join = instance_create(_x, _y, obj_joint, {joint: _weld})
+	array_push(_obj0.joins, _join)
+	array_push(_obj1.joins, _join)
+}
+
+function revolute_objects(_obj0, _obj1, _x, _y) {
+	var _revolute = physics_joint_revolute_create(_obj0, _obj1, _x, _y, 0, 0, false, 0, 0, false, false)
+	var _join = instance_create(_x, _y, obj_joint, {joint: _revolute})
 	array_push(_obj0.joins, _join)
 	array_push(_obj1.joins, _join)
 }

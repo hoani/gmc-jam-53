@@ -6,8 +6,8 @@
   "name":"obj_smash_medium",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"watermelon",
+    "path":"folders/Objects/physics/watermelon.yy",
   },
   "parentObjectId":{
     "name":"obj_smash_large",

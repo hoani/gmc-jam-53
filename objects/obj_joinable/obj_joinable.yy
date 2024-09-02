@@ -10,8 +10,8 @@
   "name":"obj_joinable",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"parent",
+    "path":"folders/Objects/physics/parent.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -38,5 +38,5 @@
     "path":"sprites/spr_joinable/spr_joinable.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

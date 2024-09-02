@@ -20,6 +20,7 @@ if (!ds_list_empty(candidates)) {
 		if _j.success {
 			candidate = _c
 			position = _j.position
+			join = _j.join
 			break
 		}
 	}

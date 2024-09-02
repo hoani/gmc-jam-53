@@ -11,8 +11,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_joinable","path":"objects/obj_joinable/obj_joinable.yy",},"propertyId":{"name":"get_join","path":"objects/obj_joinable/obj_joinable.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"get_join_line",},
   ],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"material",
+    "path":"folders/Objects/physics/material.yy",
   },
   "parentObjectId":{
     "name":"obj_joinable_base",
@@ -33,6 +33,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"length","filters":[],"listItems":[],"multiselect":false,"name":"length","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"32","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"material","filters":[],"listItems":[],"multiselect":false,"name":"material","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"MATERIAL_LINE","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

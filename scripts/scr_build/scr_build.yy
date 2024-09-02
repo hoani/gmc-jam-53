@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_build",
   "parent":{
-    "name":"physics",
-    "path":"folders/Scripts/physics.yy",
+    "name":"build",
+    "path":"folders/Scripts/build.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

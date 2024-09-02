@@ -10,8 +10,8 @@
   "name":"obj_smash_particle",
   "overriddenProperties":[],
   "parent":{
-    "name":"physics",
-    "path":"folders/Objects/physics.yy",
+    "name":"watermelon",
+    "path":"folders/Objects/physics/watermelon.yy",
   },
   "parentObjectId":null,
   "persistent":false,
