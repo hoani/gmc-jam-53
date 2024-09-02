@@ -9,3 +9,6 @@ image_angle = irandom(360)
 gravity = 9.8 / PIXELS_PER_METER
 gravity_direction = 270
 
+
+countdown = 200 + irandom(200)
+
